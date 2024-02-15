@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reset Password Form</title>
+  <style>
+    /* Provided CSS Styles */
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+    }
+  
+    .signin-container {
+      
+        max-width: 400px;
+        margin: 100px auto;
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      }
+    
+
+    .signin-container h2 {
+        text-align: center;
+        color: #333;
+    }
+
+    .signin-form {
+        margin-top: 20px;
+    }
+
+    .form-group {
+        margin-bottom: 15px;
+    }
+
+    .form-group label {
+        display: block;
+        margin-bottom: 8px;
+        color: #555;
+    }
+
+    .form-group input {
+        width: 100%;
+        padding: 8px;
+        box-sizing: border-box;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+    }
+
+    .form-group button {
+        background-color: #007bff;
+        color: #fff;
+        padding: 10px 15px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 16px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <form method="POST" action="{% url 'update_pass' %}">
+      {% csrf_token %} 
+      <div class="signin-container">
+        <h2>Reset Password</h2>
+        <div class="signin-form">
+          <div class="form-group">
+            <label for="exampleInputEmail1">Email:</label>
+            <input name="email" type="email" value="{{email}}" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" readonly>
+          </div>
+          
+          <div class="form-group">
+              <label for="exampleInputOTP">OTP:</label>
+              <input name="otp" type="text" class="form-control" id="exampleInputOTP" aria-describedby="otpHelp">
+          </div>
+
+          <div class="form-group">
+              <label for="exampleInputPassword">New Password:</label>
+              <input name="password" type="password" class="form-control" id="exampleInputPassword" aria-describedby="passwordHelp">
+          </div>
+          <div class="form-group">
+              <label for="exampleInputConfirmPassword">Confirm Password:</label>
+              <input name="c_password" type="password" class="form-control" id="exampleInputConfirmPassword" aria-describedby="confirmPasswordHelp">
+          </div>
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</body>
+</html>

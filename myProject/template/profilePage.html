@@ -1,0 +1,86 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Dashboard</title>
+    <style>
+        /* CSS styles for profile card */
+        .container {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #f2f2f2;
+        }
+
+        .profile-card {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            text-align: center;
+        }
+
+        .profile-card h2 {
+            font-size: 24px;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .profile-card p {
+            font-size: 16px;
+            margin-bottom: 8px;
+            color: #555;
+        }
+
+        .profile-card img {
+            border-radius: 50%;
+            margin-bottom: 20px;
+            max-width: 150px; /* Adjust the maximum width of the image */
+            max-height: 150px; /* Adjust the maximum height of the image */
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: background-color 0.3s ease;
+            margin-right: 10px;
+        }
+
+        .btn:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="profile-card">
+            {% if user_profile.profile_picture %}
+            <img src="{{ user_profile.profile_picture.url }}" alt="Profile Picture">
+            {% else %}
+            <img src="{% static 'images/default_profile_picture.jpg' %}" alt="Default Profile Picture">
+            {% endif %}
+            <h2>Welcome, {{ user_profile.user.username }}</h2>
+            <p>First Name: {{ user_profile.firstname }}</p>
+            <p>Last Name: {{ user_profile.lastname }}</p>
+            <p>Age: {{ user_profile.age }}</p>
+            <p>Gender: {{ user_profile.gender }}</p>
+            <p>Height: {{ user_profile.height }} cm</p>
+            <p>Weight: {{ user_profile.weight }} kg</p>
+            <p>BMR: {{ bmr }}</p>
+            <p>Total Calories Consumed: {{ total_calories_consumed }}</p>
+            <a href="{% url 'add_consumed_calories' %}" class="btn">Add Consumed Calories</a>
+            <a href="{% url 'edit_profile' %}" class="btn">Edit Profile</a>
+        </div>
+    </div>
+</body>
+</html>
+{% endblock %}
